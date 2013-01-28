@@ -51,33 +51,33 @@ describe TfIdfEngine do
             end
         end
 
-        describe '#get_all' do
+        describe '#analyze_all' do
             context 'when call' do
                 it 'expected {}' do
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == {}
                 end
             end
         end
 
-        describe 'get(id)' do
+        describe 'analyze(id)' do
             context 'when nil id input' do
                 it 'raise error' do
-                    expect { @engine.get(nil)
+                    expect { @engine.analyze(nil)
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when empty id input' do
                 it 'raise error' do
-                    expect { @engine.get('')
+                    expect { @engine.analyze('')
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when id input' do
                 it 'raise error' do
-                    expect { @engine.get('id_001')
+                    expect { @engine.analyze('id_001')
                     }.to raise_error(RuntimeError, TfIdfEngine::UNUSED_ID_ERROR)
                 end
             end
@@ -87,7 +87,7 @@ describe TfIdfEngine do
             context 'when call' do
                 it 'clear tf_idf' do
                     @engine.clear
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == {}
                 end
             end
@@ -151,36 +151,36 @@ describe TfIdfEngine do
             end
         end
 
-        describe '#get_all' do
+        describe '#analyze_all' do
             context 'when call' do
                 it 'expected tf_idf' do
                     expected = {'id_001' => {'a' => 0.0, 'b' => 0.0}}
 
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == expected
                 end
             end
 
         end
 
-        describe 'get(id)' do
+        describe 'analyze(id)' do
             context 'when nil id input' do
                 it 'raise error' do
-                    expect { @engine.get(nil)
+                    expect { @engine.analyze(nil)
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when empty id input' do
                 it 'raise error' do
-                    expect { @engine.get('')
+                    expect { @engine.analyze('')
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when invalid id input' do
                 it 'raise error' do
-                    expect { @engine.get('id_002')
+                    expect { @engine.analyze('id_002')
                     }.to raise_error(RuntimeError, TfIdfEngine::UNUSED_ID_ERROR)
                 end
             end
@@ -190,7 +190,7 @@ describe TfIdfEngine do
                     input    = 'id_001'
                     expected = {'id_001' => {'a' => 0.0, 'b' => 0.0}}
 
-                    tf_idf = @engine.get('id_001')
+                    tf_idf = @engine.analyze('id_001')
                     tf_idf.should == expected
                 end
             end
@@ -200,7 +200,7 @@ describe TfIdfEngine do
             context 'when call' do
                 it 'clear tf_idf' do
                     @engine.clear
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == {}
                 end
             end
@@ -273,7 +273,7 @@ describe TfIdfEngine do
             end
         end
 
-        describe '#get_all' do
+        describe '#analyze_all' do
             context 'when call' do
                 it 'expected tf_idf' do
                     expected = { 'id_001' => {'a' => 0.5*Math::log10(2/1),
@@ -282,30 +282,30 @@ describe TfIdfEngine do
                                               'c' => 2.0/3.0*Math::log10(2/1)}
                                }
 
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == expected
                 end
             end
         end
 
-        describe 'get(id)' do
+        describe 'analyze(id)' do
             context 'when nil id input' do
                 it 'raise error' do
-                    expect { @engine.get(nil)
+                    expect { @engine.analyze(nil)
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when empty id input' do
                 it 'raise error' do
-                    expect { @engine.get('')
+                    expect { @engine.analyze('')
                     }.to raise_error(RuntimeError, TfIdfEngine::NIL_ID_ERROR)
                 end
             end
 
             context 'when invalid id input' do
                 it 'raise error' do
-                    expect { @engine.get('id_003')
+                    expect { @engine.analyze('id_003')
                     }.to raise_error(RuntimeError, TfIdfEngine::UNUSED_ID_ERROR)
                 end
             end
@@ -317,7 +317,7 @@ describe TfIdfEngine do
                                              'b' => 0.5*Math::log10(2/2)}
                                }
 
-                    tf_idf = @engine.get('id_001')
+                    tf_idf = @engine.analyze('id_001')
                     tf_idf.should == expected
                 end
             end
@@ -329,7 +329,7 @@ describe TfIdfEngine do
                                              'c' => 2.0/3.0*Math::log10(2/1)}
                                             }
 
-                    tf_idf = @engine.get('id_002')
+                    tf_idf = @engine.analyze('id_002')
                     tf_idf.should == expected
                 end
             end
@@ -339,7 +339,7 @@ describe TfIdfEngine do
             context 'when call' do
                 it 'clear tf_idf' do
                     @engine.clear
-                    tf_idf = @engine.get_all
+                    tf_idf = @engine.analyze_all
                     tf_idf.should == {}
                 end
             end

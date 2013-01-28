@@ -28,7 +28,7 @@ engine = TfIdfEngine.new
 engine.input('id_001', %w(a b))
 engine.input('id_002', %w(b c c))
 
-tf_idf = engine.get_all
+tf_idf = engine.analyze_all
 puts tf_idf
 ```
 

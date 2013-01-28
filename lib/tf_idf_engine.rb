@@ -31,12 +31,12 @@ class TfIdfEngine
         @t_o_all[id] = @calculator.term_occurrence(doc)
     end
 
-    def get_all
+    def analyze_all
         @tf_all = @calculator.term_frequency_all(@t_o_all)
         calculate_tf_idf
     end
 
-    def get(id)
+    def analyze(id)
         raise NIL_ID_ERROR if id.nil? || id.empty?
         raise UNUSED_ID_ERROR if unused?(id)
 

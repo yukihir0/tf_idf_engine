@@ -2,8 +2,8 @@
 require 'tf_idf_engine'
 
 def print_tf_idf
-    # get all result
-    tf_idf = @engine.get_all
+    # analyze all result
+    tf_idf = @engine.analyze_all
     puts "tf_idf: #{tf_idf}", ''
 end
 
@@ -27,6 +27,6 @@ print_tf_idf
 @engine.load
 print_tf_idf
 
-# get result of specified id
-tf_idf = @engine.get('id_001')
+# analyze result of specified id
+tf_idf = @engine.analyze('id_001')
 puts "tf_idf['id_001']: #{tf_idf}"
