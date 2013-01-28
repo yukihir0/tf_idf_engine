@@ -83,6 +83,26 @@ describe TfIdfEngine do
             end
         end
 
+        describe '#exist?' do
+            context 'when nil id input' do
+                it 'false' do
+                    @engine.exist?(nil).should be_false
+                end
+            end
+
+            context 'when empty id input' do
+                it 'false ' do
+                    @engine.exist?('').should be_false
+                end
+            end
+
+            context 'when id_001 input' do
+                it 'false' do
+                    @engine.exist?('id_001').should be_false
+                end
+            end
+        end
+
         describe '#clear' do
             context 'when call' do
                 it 'clear tf_idf' do
@@ -194,6 +214,33 @@ describe TfIdfEngine do
                     tf_idf.should == expected
                 end
             end
+        end
+
+        describe '#exist?' do
+            context 'when nil id input' do
+                it 'false' do
+                    @engine.exist?(nil).should be_false
+                end
+            end
+
+            context 'when empty id input' do
+                it 'false ' do
+                    @engine.exist?('').should be_false
+                end
+            end
+
+            context 'when id_001 input' do
+                it 'true' do
+                    @engine.exist?('id_001').should be_true
+                end
+            end
+
+            context 'when id_002 input' do
+                it 'false' do
+                    @engine.exist?('id_002').should be_false
+                end
+            end
+
         end
 
         describe '#clear' do
@@ -331,6 +378,38 @@ describe TfIdfEngine do
 
                     tf_idf = @engine.analyze('id_002')
                     tf_idf.should == expected
+                end
+            end
+        end
+
+        describe '#exist?' do
+            context 'when nil id input' do
+                it 'false' do
+                    @engine.exist?(nil).should be_false
+                end
+            end
+
+            context 'when empty id input' do
+                it 'false ' do
+                    @engine.exist?('').should be_false
+                end
+            end
+
+            context 'when id_001 input' do
+                it 'true' do
+                    @engine.exist?('id_001').should be_true
+                end
+            end
+
+            context 'when id_002 input' do
+                it 'true' do
+                    @engine.exist?('id_002').should be_true
+                end
+            end
+
+            context 'when id_003 input' do
+                it 'false' do
+                    @engine.exist?('id_003').should be_false
                 end
             end
         end

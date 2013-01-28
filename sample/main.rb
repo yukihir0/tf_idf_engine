@@ -28,5 +28,5 @@ print_tf_idf
 print_tf_idf
 
 # analyze result of specified id
-tf_idf = @engine.analyze('id_001')
+tf_idf = @engine.analyze('id_001') if @engine.exist?('id_oo1')
 puts "tf_idf['id_001']: #{tf_idf}"

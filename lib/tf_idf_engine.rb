@@ -25,7 +25,7 @@ class TfIdfEngine
         raise NIL_ID_ERROR if id.nil? || id.empty?
         raise NIL_DOC_ERROR if doc.nil?
         raise NOT_ARRAY_DOC_ERROR unless doc.instance_of?(Array)
-        raise ALREADY_USED_ID_ERROR if already_used?(id)
+        raise ALREADY_USED_ID_ERROR if exist?(id)
 
         @have_unprocessed_doc = true
         @t_o_all[id] = @calculator.term_occurrence(doc)
@@ -38,11 +38,15 @@ class TfIdfEngine
 
     def analyze(id)
         raise NIL_ID_ERROR if id.nil? || id.empty?
-        raise UNUSED_ID_ERROR if unused?(id)
+        raise UNUSED_ID_ERROR unless exist?(id)
 
         tf      = @calculator.term_frequency(@t_o_all[id])
         @tf_all = {id => tf}
         calculate_tf_idf
+    end
+
+    def exist?(id)
+        @t_o_all.keys.include?(id)
     end
 
     def clear
@@ -60,14 +64,6 @@ class TfIdfEngine
     end
 
     private
-    def already_used?(id)
-        @t_o_all.keys.include?(id)
-    end
-
-    def unused?(id)
-        !already_used?(id)
-    end
-
     def calculate_tf_idf
         if @have_unprocessed_doc
             @idf_all = @calculator.inverse_document_frequency(@t_o_all)
