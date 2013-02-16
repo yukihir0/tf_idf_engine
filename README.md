@@ -1,6 +1,6 @@
 # TfIdfEngine [![Build Status](https://travis-ci.org/yukihir0/tf_idf_engine.png?branch=master)](https://travis-ci.org/yukihir0/tf_idf_engine)
 
-'tf_idf_engine' provides feature for calculating TF-IDF by incremental algorithm.
+'tf_idf_engine' provides feature for calculating TF-IDF.
 
 ## Requirements
 

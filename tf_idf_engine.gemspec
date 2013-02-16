@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = TfIdfEngine::VERSION
   gem.authors       = ["yukihir0"]
   gem.email         = ["yukihiro.cotori@gmail.com"]
-  gem.description   = %q{'tf_idf_engine' provides feature for calculating TF-IDF by incremental algorithm.}
-  gem.summary       = %q{'tf_idf_engine' provides feature for calculating TF-IDF by incremental algorithm.}
+  gem.description   = %q{'tf_idf_engine' provides feature for calculating TF-IDF.}
+  gem.summary       = %q{'tf_idf_engine' provides feature for calculating TF-IDF.}
   gem.homepage      = "https://github.com/yukihir0/tf_idf_engine"
 
   gem.files         = `git ls-files`.split($/)

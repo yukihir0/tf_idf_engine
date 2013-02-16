@@ -2,7 +2,7 @@
 require File.expand_path('spec/spec_helper')
 
 describe TfIdfCalculator do
-    context 'init' do
+    context 'initialized' do
         before(:each) do
             @calculator = TfIdfCalculator.instance
         end
@@ -213,7 +213,6 @@ describe TfIdfCalculator do
                 it 'expected tf_idf' do
                     tf_idf = @calculator.tf_idf(tf, idf)
                     tf_idf.should == expected_tf_idf
-
                 end
             end
         end

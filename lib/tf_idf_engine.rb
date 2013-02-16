@@ -1,11 +1,8 @@
 # coding: utf-8
 require 'tf_idf_engine/version'
 require 'calculator/tf_idf_calculator'
-require 'serializer/serializer_factory'
-require 'serializer/serializer_type'
 
 class TfIdfEngine
-    include SerializerType
 
     NIL_ID_ERROR          = 'nil id is  inputted.'
     NIL_DOC_ERROR         = 'nil doc is inputted.'
@@ -14,61 +11,51 @@ class TfIdfEngine
     UNUSED_ID_ERROR       = 'unused id is inputted.'
 
     public
-    def initialize(serializer_type = nil, options = {})
-        clear
+    def initialize
+        @t_o        = Hash.new
         @calculator = TfIdfCalculator.instance
-        factory     = SerializerFactory.instance
-        @serializer = factory.create_serializer(serializer_type, options)
     end
 
     def input(id, doc)
-        raise NIL_ID_ERROR if id.nil? || id.empty?
-        raise NIL_DOC_ERROR if doc.nil?
+        raise NIL_ID_ERROR if nil_or_empty?(id)
+        raise NIL_DOC_ERROR if nil_or_empty?(doc)
         raise NOT_ARRAY_DOC_ERROR unless doc.instance_of?(Array)
-        raise ALREADY_USED_ID_ERROR if exist?(id)
+        raise ALREADY_USED_ID_ERROR if used?(id)
 
-        @have_unprocessed_doc = true
-        @t_o_all[id] = @calculator.term_occurrence(doc)
+        @t_o[id] = @calculator.term_occurrence(doc)
     end
 
     def analyze_all
-        @tf_all = @calculator.term_frequency_all(@t_o_all)
-        calculate_tf_idf
+        tf  = @calculator.term_frequency_all(@t_o)
+        idf = @calculator.inverse_document_frequency(@t_o)
+        @calculator.tf_idf(tf, idf)
     end
+  
+    def analyze(doc)
+        raise NIL_DOC_ERROR if nil_or_empty?(doc)
+        raise NOT_ARRAY_DOC_ERROR unless doc.instance_of?(Array)
 
-    def analyze(id)
-        raise NIL_ID_ERROR if id.nil? || id.empty?
-        raise UNUSED_ID_ERROR unless exist?(id)
+        # input tempolary cod
+        id = 'ANALYZE_ONCE_ID'
+        input(id, doc)
+        
+        tf     = {id => @calculator.term_frequency(@t_o[id])}
+        idf    = @calculator.inverse_document_frequency(@t_o)
+        tf_idf = @calculator.tf_idf(tf, idf)
+        result = tf_idf[id]
+        
+        # delete tempolary doc
+        @t_o.delete(id)
 
-        tf      = @calculator.term_frequency(@t_o_all[id])
-        @tf_all = {id => tf}
-        calculate_tf_idf
-    end
-
-    def exist?(id)
-        @t_o_all.keys.include?(id)
-    end
-
-    def clear
-        @have_unprocessed_doc = false
-        @t_o_all = Hash.new
-        @idf_al  = Hash.new
-    end
-
-    def save
-        @serializer.serialize(@t_o_all)
-    end
-
-    def load
-        @t_o_all = @serializer.deserialize
+        result
     end
 
     private
-    def calculate_tf_idf
-        if @have_unprocessed_doc
-            @idf_all = @calculator.inverse_document_frequency(@t_o_all)
-            @have_unprocessed_doc = false
-        end
-        @calculator.tf_idf(@tf_all, @idf_all)
+    def nil_or_empty?(target)
+        target.nil? || target.empty?
+    end
+
+    def used?(id)
+        @t_o.keys.include?(id)
     end
 end
