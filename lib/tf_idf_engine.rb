@@ -3,6 +3,7 @@ require 'tf_idf_engine/version'
 require 'calculator/tf_idf_calculator'
 
 class TfIdfEngine
+    include TfIdfEngineCalculator
 
     NIL_ID_ERROR          = 'nil id is  inputted.'
     NIL_DOC_ERROR         = 'nil doc is inputted.'
