@@ -1,9 +1,9 @@
 # coding: utf-8
 require 'tf_idf_engine/version'
-require 'calculator/tf_idf_calculator'
+require 'tf_idf_engine/calculator/tf_idf_calculator'
 
 class TfIdfEngine
-    include TfIdfEngineCalculator
+    include Calculator
 
     NIL_ID_ERROR          = 'nil id is  inputted.'
     NIL_DOC_ERROR         = 'nil doc is inputted.'

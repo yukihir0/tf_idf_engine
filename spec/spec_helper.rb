@@ -2,4 +2,4 @@
 require 'rspec-parameterized'
 
 require 'tf_idf_engine'
-require 'calculator/tf_idf_calculator'
+require 'tf_idf_engine/calculator/tf_idf_calculator'
