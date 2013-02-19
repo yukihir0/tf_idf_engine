@@ -1,6 +1,6 @@
 # coding: utf-8
 require File.expand_path('spec/spec_helper')
-include Calculator
+include TfIdfEngineCalculator
 
 describe TfIdfCalculator do
     context 'initialized' do

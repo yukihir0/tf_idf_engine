@@ -7,7 +7,7 @@ require 'singleton'
 # idf:    inverse document frequency
 # tf_idf: tf * idf
 
-module Calculator
+module TfIdfEngineCalculator
     class TfIdfCalculator
         include Singleton
 
