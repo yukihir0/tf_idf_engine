@@ -11,7 +11,7 @@ describe TfIdfEngine do
                     calculator = engine.instance_eval('@calculator')
 
                     t_o.should == {}
-                    calculator.instance_of?(TfIdfCalculator).should be_true
+                    calculator.instance_of?(TfIdfCalculator).should be_truthy
                 end
             end
         end
@@ -118,19 +118,19 @@ describe TfIdfEngine do
         describe '#used?' do
             context 'when nil id input' do
                 it 'false' do
-                    @engine.send(:used?, nil).should be_false
+                    @engine.send(:used?, nil).should be_falsey
                 end
             end
 
             context 'when empty id input' do
                 it 'false ' do
-                    @engine.send(:used?,'').should be_false
+                    @engine.send(:used?,'').should be_falsey
                 end
             end
 
             context 'when id_001 input' do
                 it 'false' do
-                    @engine.send(:used?, @id1).should be_false
+                    @engine.send(:used?, @id1).should be_falsey
                 end
             end
         end
@@ -249,25 +249,25 @@ describe TfIdfEngine do
         describe '#used?' do
             context 'when nil id input' do
                 it 'false' do
-                    @engine.send(:used?, nil).should be_false
+                    @engine.send(:used?, nil).should be_falsey
                 end
             end
 
             context 'when empty id input' do
                 it 'false ' do
-                    @engine.send(:used?, '').should be_false
+                    @engine.send(:used?, '').should be_falsey
                 end
             end
 
             context 'when id_001 input' do
                 it 'true' do
-                    @engine.send(:used?, @id1).should be_true
+                    @engine.send(:used?, @id1).should be_truthy
                 end
             end
 
             context 'when id_002 input' do
                 it 'false' do
-                    @engine.send(:used?, @id2).should be_false
+                    @engine.send(:used?, @id2).should be_falsey
                 end
             end
         end
