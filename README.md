@@ -1,4 +1,4 @@
-# TfIdfEngine [![Build Status](https://travis-ci.org/yukihir0/tf_idf_engine.png?branch=master)](https://travis-ci.org/yukihir0/tf_idf_engine)
+# TfIdfEngine [![Build Status](https://travis-ci.org/yukihir0/tf_idf_engine.png?branch=master)](https://travis-ci.org/yukihir0/tf_idf_engine) [![Coverage Status](https://coveralls.io/repos/yukihir0/tf_idf_engine/badge.svg?branch=master&service=github)](https://coveralls.io/github/yukihir0/tf_idf_engine?branch=master)
 
 'tf_idf_engine' provides feature for calculating TF-IDF.
 
